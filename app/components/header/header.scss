@@ -1,6 +1,8 @@
+@import '../../variables.scss';
+
 .header{
     display: flex;
     align-items: center;
-    background-color: #004D61;
+    background-color: $primary-color;
     height: 96px;
 }

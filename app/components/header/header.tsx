@@ -1,9 +1,9 @@
 import Link from "next/link";
-import styles from "./header.module.scss";
+import "./header.scss";
 
 export default function Header() {
   return (
-    <header className={styles.header}>
+    <header className="header">
       <div className="container mx-auto flex justify-between items-center">
         <div className="ml-auto flex items-center space-x-2">
           <span className="text-lg font-medium text-white mr-[40px]">

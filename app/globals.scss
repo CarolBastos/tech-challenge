@@ -1,1 +1,23 @@
+body {
+  font-family: "Inter", sans-serif;
+}
 
+.section {
+  padding-top: 24px;
+
+  &__side-menu {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+  }
+
+  &__main {
+    border: 1px solid green;
+    margin-right: 24px;
+    margin-left: 24px;
+  }
+
+  &__bank-statement {
+    border: 1px solid pink;
+    background-color: #f5f5f5;
+  }
+}
