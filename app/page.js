@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import Tabs from "./components/tab/tab";
 import Balance from "./components/balance/balance";
+import NewTransaction from "./components/new-transaction/new-transaction";
 import "./globals.scss";
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
 
         <div className="section__main w-[690px] h-full">
           <Balance />
+          <NewTransaction />
         </div>
 
         <div className="section__bank-statement w-[282px] h-full">
