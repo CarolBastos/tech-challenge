@@ -1,4 +1,5 @@
 import React from 'react';
+import "./new-transaction.scss";
 
 interface SelectOptionProps {
   value: string;
@@ -7,9 +8,9 @@ interface SelectOptionProps {
 }
 
 const SelectOption: React.FC<SelectOptionProps> = ({ value, onClick, children }) => (
-  <li>
+  <li className="select-option">
     <button
-      className="block w-full text-gray-700 py-2 px-3 text-left hover:bg-gray-200 hover:text-gray-900"
+      className="select-option__button block w-full text-gray-700 py-2 px-3 text-left"
       onClick={() => onClick(value)}
     >
       {children}

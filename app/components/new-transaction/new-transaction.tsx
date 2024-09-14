@@ -2,17 +2,27 @@ import { useState } from "react";
 import Image from "next/image";
 import "./new-transaction.scss";
 
-import { SelectOption } from "./index";
+import { SelectOption, TransactionInput } from "./index";
+import Button from "../../components/button/button";
 
 export default function NewTransaction() {
   const [selectedValue, setSelectedValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [transactionValue, setTransactionValue] = useState<string>("");
 
   const handleToggle = () => setIsOpen((prev) => !prev);
 
   const handleSelect = (value) => {
     setSelectedValue(value);
     setIsOpen(false);
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTransactionValue(event.target.value);
+  };
+
+  const handleClick = () => {
+    console.log("clicou no botão")
   };
 
   return (
@@ -57,6 +67,16 @@ export default function NewTransaction() {
             </SelectOption>
           </ul>
         )}
+      </div>
+
+      <TransactionInput
+        label="Valor da Transação"
+        value={transactionValue}
+        onChange={handleChange}
+      />
+
+      <div className="mt-8">
+        <Button text="Concluir transação" onClick={handleClick} />
       </div>
     </div>
   );

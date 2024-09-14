@@ -14,3 +14,29 @@
     background-color: white;
   }
 }
+
+.select-option__button {
+  &:hover {
+    font-weight: 700;
+    background-color: $hover-select;
+    border-radius: 8px;
+  }
+}
+
+.transaction-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  &__input-field {
+    border: 1px solid $primary-color; 
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    font-size: 16px;
+    width: 250px;
+  }
+
+  &__label {
+    color: $accent-color
+  }
+}
