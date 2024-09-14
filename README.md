@@ -7,6 +7,8 @@ Neste projeto, foi desenvolvido o frontend para uma aplicação de gerenciamento
 ## Tecnologias Utilizadas
 
 - Next.js
+- React
+- Tailwind UI
 
 ## Como Configurar e Executar
 
@@ -16,8 +18,14 @@ Neste projeto, foi desenvolvido o frontend para uma aplicação de gerenciamento
 
    ```
 2. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
 3. Execute o projeto:
+   ```bash
+   npm run dev
+   ```
 
 ## Contribuições
 
