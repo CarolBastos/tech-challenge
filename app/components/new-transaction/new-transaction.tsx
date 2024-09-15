@@ -70,13 +70,14 @@ export default function NewTransaction() {
       </div>
 
       <TransactionInput
+        className="new-transaction__transaction-input"
         label="Valor da Transação"
         value={transactionValue}
         onChange={handleChange}
       />
 
       <div className="mt-8">
-        <Button text="Concluir transação" onClick={handleClick} />
+        <Button className="new-transaction__transaction-button" text="Concluir transação" onClick={handleClick} />
       </div>
     </div>
   );
