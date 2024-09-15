@@ -1,6 +1,4 @@
 import "./globals.scss";
-import Header from "./components/header/header";
-import styles from "./layout.module.scss";
 
 export default function RootLayout({ children }) {
   return (
@@ -13,8 +11,7 @@ export default function RootLayout({ children }) {
         <script src="https://cdn.tailwindcss.com" />
       </head>
       <body>
-        <Header />
-        <main className={styles.main}>{children}</main>
+        {children}
       </body>
     </html>
   );
