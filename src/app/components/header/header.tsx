@@ -14,11 +14,6 @@ const Header: React.FC<HeaderProps> = ({ userName }) => {
           <span className="text-[13px] font-semibold text-white mr-[40px]">
             {userName}
           </span>
-          {/* <img
-            src="/images/user-icon.svg"
-            alt="User Icon"
-            className="w-[40px] h-[40px]"
-          /> */}
           <Image
             src="/images/user-icon.svg"
             alt="User Icon"
