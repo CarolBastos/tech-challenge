@@ -1,20 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
 import "./balance.scss";
+import { User } from "@/app/interfaces";
 
 export default function Balance() {
   const [isBalanceVisible, setIsBalanceVisible] = useState(true);
+  const [user, setUser] = useState<User | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const toggleBalanceVisibility = () => {
     setIsBalanceVisible(!isBalanceVisible);
   };
 
+  useEffect(() => {
+    async function fetchUserData() {
+      try {
+        const response = await fetch('/api/account');
+        
+        if (!response.ok) {
+          throw new Error(`Erro HTTP: ${response.status}`);
+        }
+
+        const data: User = await response.json();
+        setUser(data);
+      } catch (error) {
+        setError('Erro ao buscar dados da conta.');
+        console.error('Erro ao buscar dados da conta:', error);
+      }
+    }
+
+    fetchUserData();
+  }, []);
+
   return (
     <div className="balance rounded-lg p-8 grid grid-cols-2 gap-4 ">
       <div className="col-span-1">
+      {user ? (
         <h1 className="balance__title text-white text-[25px] font-semibold">
-          Olá, Joana! :)
-        </h1>
+          Olá, {user.name}! :)
+        </h1>) :  
+        (
+        <p>Carregando...</p>
+      )}
         <h2 className="balance__title text-white text-[13px] font-normal pt-6">
           Quinta-feira, 08/09/2022
         </h2>
@@ -39,7 +66,7 @@ export default function Balance() {
           Conta Corrente
         </p>
         {isBalanceVisible ? (
-          <p className="text-white text-[31px] font-normal">R$ 2.500,00</p>
+          <p className="text-white text-[31px] font-normal">R$ {user ? user.balance.toFixed(2).replace('.', ',') : 'Saldo não disponível'}</p>
         ) : (
           <p className="text-white text-[31px] font-normal">******</p>
         )}
