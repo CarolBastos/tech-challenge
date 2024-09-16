@@ -19,7 +19,7 @@ const Balance: React.FC<BalanceProps> = ({ user }) => {
   };
 
   return (
-    <div className="balance rounded-lg p-8 grid grid-cols-2 gap-4">
+    <div className="balance rounded-lg p-8 grid grid-cols-2 gap-4 bg-primary-color">
       <div className="col-span-1">
         {user ? (
           <h1 className="balance__title text-white text-[25px] font-semibold">
