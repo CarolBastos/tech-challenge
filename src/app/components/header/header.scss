@@ -1,11 +1,6 @@
 @import '../../variables.scss';
 
 .header {
-    display: flex;
-    align-items: center;
-    background-color: $primary-color;
-    height: 96px;
-
     &__container {
         width: 100%;
     }

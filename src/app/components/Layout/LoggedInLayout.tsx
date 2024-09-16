@@ -9,7 +9,7 @@ import  "./layout.scss";
 const LoggedInLayout: React.FC<{}> = () => (
   <div>
     <Header />
-    <main className="main-logged bg-soft-green"> 
+    <main className="main-logged bg-soft-green h-[100vh]"> 
       <section className="main-logged__section pt-6 flex justify-center items-center h-screen">
         <div className="main-logged__side-menu w-[180px] h-full bg-menu-gray rounded-lg">
           <Tabs />
