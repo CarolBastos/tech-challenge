@@ -2,6 +2,9 @@ import "./globals.scss";
 
 export const metadata = {
   title: "Inicial",
+  icons: {
+    icon: '/favicon_48px.svg',
+  },
 };
 
 export default function RootLayout({
