@@ -21,7 +21,7 @@ const Button: React.FC<DynamicButtonProps> = ({
   return (
       <button
         onClick={onClick}
-        className={`${backgroundColor} ${textColor} ${width} ${className} button-default px-4 rounded-lg flex items-center justify-center`}
+        className={`${backgroundColor} ${textColor} ${width} ${className} button-default w-auto px-4 rounded-lg flex items-center justify-center`}
       >
         {text}
       </button>
