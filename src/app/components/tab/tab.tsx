@@ -4,7 +4,7 @@ import "./tab.scss";
 export default function Tabs() {
   const [activeLink, setActiveLink] = useState("home");
 
-  const handleClick = (link) => {
+  const handleClick = (link: string) => {
     setActiveLink(link);
   };
 

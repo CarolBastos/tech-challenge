@@ -12,7 +12,7 @@ export default function NewTransaction() {
 
   const handleToggle = () => setIsOpen((prev) => !prev);
 
-  const handleSelect = (value) => {
+  const handleSelect = (value: string) => {
     setSelectedValue(value);
     setIsOpen(false);
   };

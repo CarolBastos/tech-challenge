@@ -6,7 +6,7 @@ import NewTransaction from "../../components/new-transaction/new-transaction";
 
 import  "./layout.scss";
 
-const LoggedInLayout: React.FC<{}> = () => (
+const LoggedInLayout: React.FC = () => (
   <div>
     <Header />
     <main className="main-logged bg-soft-green h-[100vh]"> 
