@@ -25,9 +25,7 @@ const Balance: React.FC<BalanceProps> = ({ user }) => {
           <h1 className="balance__title text-white text-[25px] font-semibold">
             Olá, {user.name?.split(' ')[0]}! :)
           </h1>
-        ) : (
-          <p>Carregando...</p>
-        )}
+        ) : ''}
         <h2 className="balance__title text-white text-[13px] font-normal pt-6">
           Quinta-feira, 08/09/2022
         </h2>
@@ -53,7 +51,7 @@ const Balance: React.FC<BalanceProps> = ({ user }) => {
         </p>
         {isBalanceVisible ? (
           <p className="text-white text-[31px] font-normal">
-            R$ {user ? formatBalance(user.balance ?? 0) : 'Saldo não disponível'}
+            R$ {user ? formatBalance(user.balance ?? 0) : ''}
           </p>
         ) : (
           <p className="text-white text-[31px] font-normal">******</p>
