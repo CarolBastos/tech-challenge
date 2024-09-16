@@ -3,8 +3,9 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   const user: User = {
-    name: 'João Silva',
-    balance: 2.500,
+    id: 1,
+    name: 'Joana da Silva Oliveira',
+    balance: 2500,
   };
 
   return NextResponse.json(user);
