@@ -1,5 +1,5 @@
 import React from 'react';
-import WelcomeLayout from '../components/Layout/WelcomeLayout';
+import WelcomeLayout from '@/app/components/Layout/WelcomeLayout';
 
 const WelcomePage: React.FC = () => (
   <WelcomeLayout>

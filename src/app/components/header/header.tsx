@@ -10,7 +10,7 @@ export default function Header() {
             Joana da Silva Oliveira
           </span>
           <img
-            src="/user-icon.svg"
+            src="/images/user-icon.svg"
             alt="User Icon"
             className="w-[40px] h-[40px]"
           />
