@@ -8,7 +8,7 @@ import  "./layout.scss";
 import useAccount from '@/hooks/useAccount';
 
 const LoggedInLayout: React.FC = () => {
-  const { user, error } = useAccount();
+  const { user } = useAccount();
 
   return (
     <div>

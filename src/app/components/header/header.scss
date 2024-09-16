@@ -1,14 +1,1 @@
 @import '../../variables.scss';
-
-.header {
-    &__container {
-        width: 100%;
-    }
-}
-
-@media (min-width: 1300px) {
-    .header__container {
-        margin-right: 460px;
-        margin-left: 460px;
-    }
-}
