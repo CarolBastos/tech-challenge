@@ -1,5 +1,6 @@
-import React from 'react';
-import './header.scss';
+import React from "react";
+import Image from "next/image";
+import "./header.scss";
 
 interface HeaderProps {
   userName?: string;
@@ -13,10 +14,16 @@ const Header: React.FC<HeaderProps> = ({ userName }) => {
           <span className="text-[13px] font-semibold text-white mr-[40px]">
             {userName}
           </span>
-          <img
+          {/* <img
             src="/images/user-icon.svg"
             alt="User Icon"
             className="w-[40px] h-[40px]"
+          /> */}
+          <Image
+            src="/images/user-icon.svg"
+            alt="User Icon"
+            width={40}
+            height={40}
           />
         </div>
       </div>
@@ -25,4 +32,3 @@ const Header: React.FC<HeaderProps> = ({ userName }) => {
 };
 
 export default Header;
-
