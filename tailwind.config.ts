@@ -11,12 +11,23 @@ const config: Config = {
       colors: {
         "primary-color": "#004D61",
         "secondary-color": "#FF5031",
+        "tertiary-color": "#47A138",
         "accent-color": "#DEE9EA",
         "link-menu-color": "#024D60",
         "new-transaction": "#CBCBCB",
         "soft-green": "#E4EDE3",
         "menu-gray": "#f5f5f5"
       },
+    },
+    fontSize: {
+      xxs:'0.75rem', //12px
+      xs:'0.875rem', //14px
+      sm:'1rem', //16px
+      md:'1.125rem', //18px
+      lg:'1.25rem', //20px
+      xl:'1.563rem', //25px
+      '2xl':'1.75rem', //28px
+      '3xl':'1.938rem', //31px
     },
     fontFamily: {
       sans: "Inter, sans-serif",
