@@ -18,7 +18,7 @@ const NotFound: React.FC = () => {
             </p>
             <Link
               href={{
-                pathname: "/",
+                pathname: "/welcome",
               }}
               className="bg-secondary-color text-white font-bold p-3.5 rounded-lg text-base"
             >
