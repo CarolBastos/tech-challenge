@@ -1,10 +1,18 @@
 import { NextResponse } from "next/server";
 import { Transaction } from "@/app/interfaces";
+import { statement } from "../statement/data";
 
 export async function POST(request: Request) {
-  const transaction: Transaction = await request.json();
+  const transaction = await request.json();
 
-  return new NextResponse(JSON.stringify(transaction), {
+  const newTransaction: Transaction = {
+    id: statement.transactions.length + 1,
+    ...transaction,
+  };
+
+  statement.transactions.push(newTransaction);
+
+  return new NextResponse(JSON.stringify(newTransaction), {
     headers: {
       "Content-Type": "application/json",
     },
