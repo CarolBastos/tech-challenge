@@ -18,3 +18,19 @@ export async function DELETE(request: Request, context: { params: Params }) {
 
   return NextResponse.json(transactionDeleted);
 }
+
+export async function PATCH(request: Request, context: { params: Params }) {
+  const index = statement.transactions.findIndex(
+    (transaction) => transaction.id === parseInt(context.params.id)
+  );
+
+  const transactionToBeUpdated: Transaction = statement.transactions[index];
+
+  const body = await request.json();
+  const { description = null, amount = null } = body;
+
+  if (description) transactionToBeUpdated.description = description;
+  if (amount) transactionToBeUpdated.amount = amount;
+
+  return NextResponse.json(transactionToBeUpdated);
+}
