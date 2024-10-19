@@ -1,13 +1,8 @@
 import { NextResponse } from "next/server";
 import { Transaction } from "@/app/interfaces";
+import { isValidDateTime } from "@/app/utils";
 import { statement } from "../statement/data";
 
-// function isValidISODate(date: string): boolean {
-//   const parsedDate = new Date(date);
-//   return !isNaN(parsedDate.getTime()) && date === parsedDate.toISOString();
-// }
-
-//verify if data received is valid
 export async function POST(request: Request) {
   const transaction = await request.json();
 
@@ -16,6 +11,10 @@ export async function POST(request: Request) {
       { error: "Amount of transaction must be bigger than 0" },
       { status: 400 }
     );
+  }
+
+  if (!isValidDateTime(transaction.date)) {
+    return NextResponse.json({ error: "Invalid date" }, { status: 400 });
   }
 
   const currentDate = new Date().toISOString();

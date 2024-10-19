@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Transaction } from "@/app/interfaces";
+import { isValidDateTime } from "@/app/utils";
 import { statement } from "../../statement/data";
 
 type Params = {
@@ -26,7 +27,6 @@ export async function DELETE(request: Request, context: { params: Params }) {
   return NextResponse.json(transactionDeleted);
 }
 
-//verify if date is valid
 export async function PATCH(request: Request, context: { params: Params }) {
   const index = statement.transactions.findIndex(
     (transaction) => transaction.id === parseInt(context.params.id)
@@ -57,6 +57,10 @@ export async function PATCH(request: Request, context: { params: Params }) {
   }
 
   if (date) {
+    if (!isValidDateTime(date)) {
+      return NextResponse.json({ error: "Invalid date" }, { status: 400 });
+    }
+
     const currentDate = new Date().toISOString();
     const newDate = new Date(date).toISOString();
 
