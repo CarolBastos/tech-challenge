@@ -27,10 +27,11 @@ export async function PATCH(request: Request, context: { params: Params }) {
   const transactionToBeUpdated: Transaction = statement.transactions[index];
 
   const body = await request.json();
-  const { description = null, amount = null } = body;
+  const { description = null, amount = null, date = null } = body;
 
   if (description) transactionToBeUpdated.description = description;
   if (amount) transactionToBeUpdated.amount = amount;
+  if (date) transactionToBeUpdated.date = date;
 
   return NextResponse.json(transactionToBeUpdated);
 }
