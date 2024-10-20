@@ -4,9 +4,14 @@ export type User = {
   balance: number;
 };
 
+export enum TypesOfTransaction {
+  Deposito = "depósito",
+  Transferencia = "transferência",
+}
+
 export interface Transaction {
   id: number;
-  description: string;
+  description: TypesOfTransaction;
   amount: number;
   date: string;
 }

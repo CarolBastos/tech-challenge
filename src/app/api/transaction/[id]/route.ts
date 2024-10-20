@@ -1,6 +1,7 @@
+import { isValidDateTime, isValidTransactionType } from "@/app/utils";
+
 import { NextResponse } from "next/server";
 import { Transaction } from "@/app/interfaces";
-import { isValidDateTime } from "@/app/utils";
 import { statement } from "../../statement/data";
 
 type Params = {
@@ -44,7 +45,16 @@ export async function PATCH(request: Request, context: { params: Params }) {
   const body = await request.json();
   const { description = null, amount = null, date = null } = body;
 
-  if (description) transactionToBeUpdated.description = description;
+  if (description) {
+    if (!isValidTransactionType(description)) {
+      return NextResponse.json(
+        { error: "Description of transaction is not valid" },
+        { status: 400 }
+      );
+    }
+
+    transactionToBeUpdated.description = description;
+  }
   if (amount) {
     if (amount > 0) {
       transactionToBeUpdated.amount = amount;

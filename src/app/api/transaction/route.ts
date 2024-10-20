@@ -1,6 +1,7 @@
+import { isValidDateTime, isValidTransactionType } from "@/app/utils";
+
 import { NextResponse } from "next/server";
 import { Transaction } from "@/app/interfaces";
-import { isValidDateTime } from "@/app/utils";
 import { statement } from "../statement/data";
 
 export async function POST(request: Request) {
@@ -9,6 +10,13 @@ export async function POST(request: Request) {
   if (transaction.amount <= 0) {
     return NextResponse.json(
       { error: "Amount of transaction must be bigger than 0" },
+      { status: 400 }
+    );
+  }
+
+  if (!isValidTransactionType(transaction.description)) {
+    return NextResponse.json(
+      { error: "Description of transaction is not valid" },
       { status: 400 }
     );
   }
