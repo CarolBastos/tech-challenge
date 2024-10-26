@@ -1,6 +1,6 @@
 import "./header.scss";
+
 import Image from "next/image";
-import Button from "../button/button";
 
 export default function WelcomeHeader() {
   return (
@@ -25,8 +25,12 @@ export default function WelcomeHeader() {
           </a>
           <nav>
             <ul className="hidden md:flex items-center gap-4 inline text-md text-tertiary-color font-semibold">
-              <li><a href="#">Sobre</a></li>
-              <li><a href="#">Serviços</a></li>
+              <li>
+                <a href="#">Sobre</a>
+              </li>
+              <li>
+                <a href="#">Serviços</a>
+              </li>
             </ul>
           </nav>
         </div>
@@ -39,10 +43,14 @@ export default function WelcomeHeader() {
           />
         </a>
         <div className="hidden md:flex flex gap-4">
-          <button className="bg-tertiary-color text-white p-3.5 rounded-lg">Abrir conta</button>
-          <button className="border-2 border-tertiary-color text-tertiary-color font-semibold p-3.5 rounded-lg">Já tenho conta</button>
+          <button className="bg-tertiary-color text-white p-3.5 rounded-lg">
+            Abrir conta
+          </button>
+          <button className="border-2 border-tertiary-color text-tertiary-color font-semibold p-3.5 rounded-lg">
+            Já tenho conta
+          </button>
         </div>
       </div>
-    </header >
+    </header>
   );
 }
