@@ -16,7 +16,7 @@ const WelcomeCard: React.FC<WelcomeCard> = ({
   cardText,
 }) => {
   return (
-    <div className="flex flex-col gap-4 items-center">
+    <div className="flex flex-col gap-4 items-center font-inter">
       {cardImage && (
         <Image src={cardImage} alt={cardAltImage} width={73} height={56} />
       )}

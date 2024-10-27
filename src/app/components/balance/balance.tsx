@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
 import { User } from '@/app/interfaces';
 import "./balance.scss";
+import Image from "next/image";
 
 interface BalanceProps {
   user: User | null; 
@@ -19,44 +20,65 @@ const Balance: React.FC<BalanceProps> = ({ user }) => {
   };
 
   return (
-    <div className="balance rounded-lg p-8 grid grid-cols-2 gap-4 bg-primary-color">
-      <div className="col-span-1">
+    <div className="relative h-[40.9375rem] w-full items-center bg-primary-color text-white font-inter p-10 rounded-lg md:h-[25.125rem] lg:grow md:flex z-20">
+      <div className="w-full flex flex-col items-center gap-6 mb-10 md:h-full md:items-start md:m-0">
         {user ? (
-          <h1 className="balance__title text-white text-[25px] font-semibold">
+          <h1 className="text-white text-xl font-semibold">
             Olá, {user.name?.split(' ')[0]}! :)
           </h1>
         ) : ''}
-        <h2 className="balance__title text-white text-[13px] font-normal pt-6">
+        <h2 className="text-xxs">
           Quinta-feira, 08/09/2022
         </h2>
       </div>
-      <div className="col-span-1 balance__container-secondary content-center">
-        <div className="balance__box pb-4 border-b-2 w-[180px] flex items-center space-x-2">
-          <p className="text-white text-xl font-semibold pr-[25px]">Saldo</p>
+      <div className="w-full flex flex-col gap-4 z-20">
+        <div className="flex items-center pb-4 border-b-2 gap-6 lg:border-secondary-color">
+          <p className="text-lg">Saldo</p>
           {isBalanceVisible ? (
             <EyeIcon
-              className="w-6 h-6 balance__icon-open cursor-pointer"
+              className="w-6 h-6 cursor-pointer lg:text-secondary-color"
               onClick={toggleBalanceVisibility}
             />
           ) : (
             <EyeOffIcon
-              className="w-6 h-6 balance__icon-closed cursor-pointer"
+              className="w-6 h-6 cursor-pointer lg:text-secondary-color"
               onClick={toggleBalanceVisibility}
             />
           )}
         </div>
 
-        <p className="text-white mt-4 pb-2 text-[16px] font-normal">
+        <p className="text-sm">
           Conta Corrente
         </p>
         {isBalanceVisible ? (
-          <p className="text-white text-[31px] font-normal">
+          <p className="text-3xl">
             R$ {user ? formatBalance(user.balance ?? 0) : ''}
           </p>
         ) : (
-          <p className="text-white text-[31px] font-normal">******</p>
+          <p className="text-3xl">******</p>
         )}
       </div>
+      <Image
+            src="/images/balance-illustration.svg"
+            alt="ByteBank logo"
+            width={32}
+            height={32}
+            className='absolute bottom-6 left-6 w-[16.5rem] z-10 md:w-[17.6875rem] lg:hidden'
+      />
+      <Image
+            src="/images/balance-bg-squares-1.svg"
+            alt="ByteBank logo"
+            width={32}
+            height={32}
+            className='absolute top-0 max-[767px]:left-0 w-auto z-0 min-[768px]:right-0 lg:hidden'
+      />
+      <Image
+            src="/images/balance-bg-squares-2.svg"
+            alt="ByteBank logo"
+            width={32}
+            height={32}
+            className='absolute bottom-0 right-0 w-auto z-0 md:left-0 lg:hidden'
+      />
     </div>
   );
 };

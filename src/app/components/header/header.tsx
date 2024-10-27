@@ -8,10 +8,10 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ userName }) => {
   return (
-    <header className="header flex items-center bg-primary-color h-24">
-      <div className="header__container container flex justify-between items-center w-full max-w-7xl mx-auto px-10">
-        <div className="ml-auto flex items-center">
-          <span className="text-[13px] font-semibold text-white mr-[40px]">
+    <header className="w-full text-sm text-white bg-primary-color font-inter">
+      <div className="max-w-sm flex flex-row-reverse items-center justify-between mx-auto py-7 md:max-w-md md:justify-items-end lg:max-w-lg lg:px-6">
+        <div className="flex items-center gap-10">
+          <span className="hidden md:inline">
             {userName}
           </span>
           <Image
@@ -21,6 +21,14 @@ const Header: React.FC<HeaderProps> = ({ userName }) => {
             height={40}
           />
         </div>
+        <a href="/welcome" className="inline-block md:hidden lg:hidden">
+          <Image
+            src="/images/icone-menu.svg"
+            alt="ByteBank logo"
+            width={32}
+            height={32}
+          />
+        </a>
       </div>
     </header>
   );

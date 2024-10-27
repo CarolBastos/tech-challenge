@@ -9,32 +9,32 @@ export default function Tabs() {
   };
 
   return (
-    <div className={`tab relative`}>
-      <nav className={`tab__nav`}>
+    <div className="hidden md:inline bg-transparent font-inter text-black text-center rounded-t-lg lg:w-[24rem]">
+      <nav className="flex w-full lg:flex-col lg:p-8 lg:bg-menu-gray lg:rounded-t-lg lg:h-full">
         <a
           href="#"
-          className={activeLink === "home" ? "active" : ""}
+          className={activeLink === "home" ? "w-full py-4 text-tertiary-color font-semibold border-b-2 border-tertiary-color lg:pt-0" : "w-full py-4 lg:border-b lg:border-black lg:pt-0"}
           onClick={() => handleClick("home")}
         >
           Início
         </a>
         <a
           href="#"
-          className={activeLink === "transfers" ? "active" : ""}
+          className={activeLink === "transfers" ? "w-full py-4 text-tertiary-color font-semibold border-b-2 border-tertiary-color" : "w-full py-4 lg:border-b lg:border-black"}
           onClick={() => handleClick("transfers")}
         >
           Transferências
         </a>
         <a
           href="#"
-          className={activeLink === "investments" ? "active" : ""}
+          className={activeLink === "investments" ? "w-full py-4 text-tertiary-color font-semibold border-b-2 border-tertiary-color" : "w-full py-4 lg:border-b lg:border-black"}
           onClick={() => handleClick("investments")}
         >
           Investimentos
         </a>
         <a
           href="#"
-          className={activeLink === "services" ? "active" : ""}
+          className={activeLink === "services" ? "w-full py-4 text-tertiary-color font-semibold md:border-b-2 md:border-tertiary-color lg:border-none" : "w-full py-4"}
           onClick={() => handleClick("services")}
         >
           Outros Serviços

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function WelcomeFooter() {
   return (
-    <footer className="w-full bg-black">
+    <footer className="w-full bg-black font-inter">
       <div className="max-w-sm flex gap-8 mx-auto py-6 text-sm text-white flex-col md:flex-row md:max-w-md py-6 lg:flex-row lg:max-w-lg lg:px-6 lg:py-10">
         <div className="flex-1">
           <p className="mb-4 font-bold">Serviços</p>
