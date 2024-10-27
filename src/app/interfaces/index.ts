@@ -21,3 +21,9 @@ export interface Statement {
   startDate?: string;
   endDate?: string;
 }
+
+export type UserLogin = {
+  id: number;
+  username: string;
+  password: string;
+};
