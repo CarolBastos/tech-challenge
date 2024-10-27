@@ -6,14 +6,16 @@ import WelcomeFooter from "../footer/welcome-footer";
 import Image from "next/image";
 import WelcomeCard from "../card/WelcomeCard";
 import { LoginForm } from "../login/LoginForm";
+import { UserRegisterForm } from "../user-register-form/UserRegisterForm";
 
 const WelcomeLayout: React.FC = ({
 }) => {
   const [viewLoginForm, setViewLoginForm] = useState(false);
+  const [viewUserRegisterForm, setUserRegisterForm] = useState(false);
 
   return (
     <div>
-      <WelcomeHeader onViewLoginForm={() => setViewLoginForm(true)}/>
+      <WelcomeHeader onViewLoginForm={() => setViewLoginForm(true)} onViewUserRegisterForm={() => setUserRegisterForm(true)}/>
         <main className="welcome-layout-main w-full bg-gradient-to-b from-primary-color to-light">
       
           <div className="max-w-sm flex flex-col items-center mx-auto py-20 gap-10 md:max-w-md lg:max-w-lg lg:px-6">
@@ -67,6 +69,7 @@ const WelcomeLayout: React.FC = ({
           </div>
         </main>
         <LoginForm viewLoginForm={viewLoginForm} onClose={() => setViewLoginForm(false)}/>
+        <UserRegisterForm viewUserRegisterForm={viewUserRegisterForm} onClose={() => setUserRegisterForm(false)}/>
       <WelcomeFooter />
     </div>
   );

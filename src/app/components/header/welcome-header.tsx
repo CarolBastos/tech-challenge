@@ -4,9 +4,10 @@ import Image from "next/image";
 
 interface IWelcomeHeader {
   onViewLoginForm: (value: boolean) => void
+  onViewUserRegisterForm: (value: boolean) => void
 }
 
-export default function WelcomeHeader({onViewLoginForm}: IWelcomeHeader) {
+export default function WelcomeHeader({onViewLoginForm, onViewUserRegisterForm}: IWelcomeHeader) {
   return (
     <header className="w-full bg-black text-sm text-white">
       <div className="max-w-sm flex flex-row-reverse items-center justify-between mx-auto py-6 md:flex-row md:max-w-md lg:max-w-lg lg:px-6">
@@ -47,7 +48,7 @@ export default function WelcomeHeader({onViewLoginForm}: IWelcomeHeader) {
           />
         </a>
         <div className="hidden md:flex flex gap-4">
-          <button className="bg-tertiary-color text-white p-3.5 rounded-lg">
+          <button onClick={() => onViewUserRegisterForm(true)} className="bg-tertiary-color text-white p-3.5 rounded-lg">
             Abrir conta
           </button>
           <button onClick={() => onViewLoginForm(true)} className="border-2 border-tertiary-color text-tertiary-color font-semibold p-3.5 rounded-lg">
