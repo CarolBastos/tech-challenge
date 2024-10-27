@@ -24,6 +24,8 @@ export interface Statement {
 
 export type UserLogin = {
   id: number;
-  username: string;
+  email: string;
   password: string;
+  name: string;
+  terms: boolean;
 };
