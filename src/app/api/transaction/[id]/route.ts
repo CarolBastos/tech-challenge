@@ -2,7 +2,7 @@ import { isValidDateTime, isValidTransactionType } from "@/app/utils";
 
 import { NextResponse } from "next/server";
 import { Transaction } from "@/app/interfaces";
-import { statement } from "../../statement/data";
+import { statement } from "../../../../mocks/statement";
 
 type Params = {
   id: string;
