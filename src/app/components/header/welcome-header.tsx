@@ -2,7 +2,11 @@ import "./header.scss";
 
 import Image from "next/image";
 
-export default function WelcomeHeader() {
+interface IWelcomeHeader {
+  onViewLoginForm: (value: boolean) => void
+}
+
+export default function WelcomeHeader({onViewLoginForm}: IWelcomeHeader) {
   return (
     <header className="w-full bg-black text-sm text-white">
       <div className="max-w-sm flex flex-row-reverse items-center justify-between mx-auto py-6 md:flex-row md:max-w-md lg:max-w-lg lg:px-6">
@@ -46,7 +50,7 @@ export default function WelcomeHeader() {
           <button className="bg-tertiary-color text-white p-3.5 rounded-lg">
             Abrir conta
           </button>
-          <button className="border-2 border-tertiary-color text-tertiary-color font-semibold p-3.5 rounded-lg">
+          <button onClick={() => onViewLoginForm(true)} className="border-2 border-tertiary-color text-tertiary-color font-semibold p-3.5 rounded-lg">
             Já tenho conta
           </button>
         </div>
