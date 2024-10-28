@@ -9,7 +9,7 @@ interface IWelcomeHeader {
 
 export default function WelcomeHeader({onViewLoginForm, onViewUserRegisterForm}: IWelcomeHeader) {
   return (
-    <header className="w-full bg-black text-sm text-white">
+    <header className="w-full bg-black text-sm text-white font-inter">
       <div className="max-w-sm flex flex-row-reverse items-center justify-between mx-auto py-6 md:flex-row md:max-w-md lg:max-w-lg lg:px-6">
         <div className="flex items-center gap-10">
           <a href="/welcome" className="hidden md:inline lg:hidden">

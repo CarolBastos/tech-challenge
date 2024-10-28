@@ -29,7 +29,7 @@ const config: Config = {
       sm:'1rem', //16px
       md:'1.125rem', //18px
       lg:'1.25rem', //20px
-      xl:'1.563rem', //25px
+      xl:'1.5625rem', //25px
       '2xl':'1.75rem', //28px
       '3xl':'1.938rem', //31px
     },
@@ -40,7 +40,7 @@ const config: Config = {
       'hero': '27.125rem',
     },
     fontFamily: {
-      sans: "Inter, sans-serif",
+      inter: "Inter, sans-serif",
     },
   },
   plugins: [],
