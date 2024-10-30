@@ -8,6 +8,7 @@ import  "./layout.scss";
 import useAccount from '@/hooks/useAccount';
 import Image from 'next/image';
 import { TransactionCard } from '../generics/TransactionCard';
+import TabletNavbar from '../tab/tabletNavbar';
 
 const LoggedInLayout: React.FC = () => {
   const { user } = useAccount();
@@ -16,6 +17,7 @@ const LoggedInLayout: React.FC = () => {
     <div>
       <Header userName={user?.name} />
       <main className="main-logged bg-soft-green h-[100vh] w-full"> 
+        <TabletNavbar />
         <section className="main-logged__section pt-6 flex justify-center items-start h-screen">
           <div className="main-logged__side-menu">
             <Tabs />

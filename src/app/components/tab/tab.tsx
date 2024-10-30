@@ -10,7 +10,7 @@ export default function Tabs() {
   };
 
   return (
-    <div className="navbar hidden lg:flex lg:flex-col lg:bg-menu-gray text-center lg:rounded-t-lg ">
+    <div className="navbar lg:flex lg:flex-col lg:bg-menu-gray text-center lg:rounded-t-lg ">
       <nav className="flex flex-col w-full p-8 bg-menu-gray rounded-t-lg">
         {navItems.map((item, index) => (
           <a
