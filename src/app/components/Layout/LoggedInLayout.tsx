@@ -9,7 +9,7 @@ import NewTransaction from "../../components/new-transaction/new-transaction";
 import  "./layout.scss";
 import useAccount from '@/hooks/useAccount';
 import Image from 'next/image';
-import { TransactionCard } from '../generics/TransactionCard';
+import ClientStatement from '../userStatement/userStatement';
 import TabletNavbar from '../tab/tabletNavbar';
 
 const LoggedInLayout: React.FC = () => {
@@ -45,18 +45,7 @@ const LoggedInLayout: React.FC = () => {
               </div>
             </div>
             <div className='flex flex-col gap-6'>
-              <TransactionCard
-                month='Novembro'
-                date='27/10/2024'
-                transactionType='Depósito'
-                transactionValue={30.00}
-              />
-              <TransactionCard
-                month='Novembro'
-                date='27/10/2024'
-                transactionType='Depósito'
-                transactionValue={30.00}
-              />
+              <ClientStatement />
             </div>
           </div>
         </section>
