@@ -1,14 +1,7 @@
 "use client";
-import React from "react";
-import LoggedInLayout from "@/app/components/Layout/LoggedInLayout";
 import "./globals.scss";
+import WelcomeLayout from './components/Layout/WelcomeLayout';
 
-const Home = () => {
-  return (
-    <>
-      <LoggedInLayout></LoggedInLayout>
-    </>
-  );
-};
+const Home = () => <WelcomeLayout/>
 
 export default Home;
