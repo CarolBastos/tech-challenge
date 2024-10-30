@@ -39,7 +39,7 @@ export const LoginForm = ({ viewLoginForm, onClose }: ILoginForm) => {
 
       if (res.ok) {
         setMessage(data.message);
-        router.push("/");
+        router.push("/perfil");
         handleClose();
       } else {
         setMessage(data.message);

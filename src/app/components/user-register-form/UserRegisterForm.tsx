@@ -45,7 +45,7 @@ export const UserRegisterForm = ({
 
     if (res.ok) {
       setMessage("Cadastro realizado com sucesso!");
-      router.push("/");
+      router.push("/perfil");
     } else {
       setMessage(data.error || "Erro ao criar conta.");
     }
