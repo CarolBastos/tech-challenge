@@ -4,6 +4,8 @@ import "./new-transaction.scss";
 
 import { SelectOption, TransactionInput } from "./index";
 import Button from "../../components/button/button";
+import { TypesOfTransaction } from "@/app/interfaces";
+import { user } from "@/mocks/userAccount";
 
 export default function NewTransaction() {
   const [selectedValue, setSelectedValue] = useState("");
@@ -19,10 +21,102 @@ export default function NewTransaction() {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTransactionValue(event.target.value);
+    console.log(transactionValue)
   };
 
-  const handleClick = () => {
-    console.log("clicou no botão")
+  function descriptionHandler(description: string): TypesOfTransaction{
+    if(description == 'Empréstimo e Financiamento'){
+      return TypesOfTransaction.Deposito
+    } else if(description == 'DOC/TED'){
+      return TypesOfTransaction.Transferencia
+    }else{
+      return TypesOfTransaction.Deposito
+    }
+  }
+
+  function replaceCommaWithDot(value: string) {
+    return value.replace(/,/g, '.');
+  }
+
+  const handleBalance = async () => {
+    const newTransactionValue = replaceCommaWithDot(transactionValue);
+    const amount = Number(newTransactionValue);
+
+    if (isNaN(amount) || amount <= 0) {
+      console.error("Invalid transaction amount");
+      return;
+    }
+      
+    const description = descriptionHandler(selectedValue)
+  
+    let balance = 0;
+
+    if(description == TypesOfTransaction.Deposito){
+      balance = amount + user[0].balance;
+    }
+    else{
+      balance = amount - user[0].balance
+    }
+
+    try {
+      const response = await fetch("../../api/account", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(balance),
+      });
+
+      if (response.ok) {
+        const userBalance = await response.json();
+        console.log("Balance altered:", userBalance);
+      } else {
+        const errorData = await response.json();
+        console.error("Error:", errorData.error);
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+    }
+  }
+
+
+  const handleClick = async () => {
+    const newTransactionValue = replaceCommaWithDot(transactionValue);
+    const amount = Number(newTransactionValue);
+
+    if (isNaN(amount) || amount <= 0) {
+      console.error("Invalid transaction amount");
+      return;
+    }
+      const transaction = {
+        amount: amount,
+        description: descriptionHandler(selectedValue),
+        date: new Date().toISOString()
+      }
+  
+      try {
+        const response = await fetch("../../api/transaction", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(transaction),
+        });
+  
+        if (response.ok) {
+          const newTransaction = await response.json();
+          console.log("Transaction created:", newTransaction);
+          await handleBalance();
+          setSelectedValue("");
+          setTransactionValue("");
+    
+        } else {
+          const errorData = await response.json();
+          console.error("Error:", errorData.error);
+        }
+      } catch (error) {
+        console.error("Network error:", error);
+      }
   };
 
   return (

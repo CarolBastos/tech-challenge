@@ -1,12 +1,21 @@
-import { User } from '@/app/interfaces';
 import { NextResponse } from 'next/server';
+import { user } from "../../../mocks/userAccount";
+import { User } from '@/app/interfaces';
 
 export async function GET() {
-  const user: User = {
-    id: 1,
-    name: 'Joana da Silva Oliveira',
-    balance: 2500,
-  };
+  const userAccount: User = user[0];
 
-  return NextResponse.json(user);
+  return NextResponse.json(userAccount);
+}
+
+export async function POST(request: Request) {
+  const balance = await request.json();
+  user[0].balance = balance;
+
+  return NextResponse.json(JSON.stringify(user[0]), {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    status: 201,
+  });
 }
