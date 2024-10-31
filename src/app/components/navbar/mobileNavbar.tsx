@@ -41,14 +41,14 @@ export default function MobileNavbar() {
           >
             ✕
           </button>
-          <nav className="flex flex-col items-center space-y-4 w-full">
+          <nav className="flex flex-col items-center w-full">
             {navItems.map((item, index) => (
               <a
                 key={item.link}
                 href={`#${item.link}`}
-                className={`block py-2 px-4  text-md text-black hover:bg-gray-200 text-center w-full ${
+                className={`block py-4 text-md text-black hover:bg-gray-200 text-center w-full ${
                   activeLink === item.link
-                    ? "text-tertiary-color font-bold border-b-2 border-tertiary-color lg:pt-4"
+                    ? "text-tertiary-color font-bold border-b-2 border-tertiary-color"
                     : "text-black font-normal"
                 } ${
                   index !== navItems.length - 1
