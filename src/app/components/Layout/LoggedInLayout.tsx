@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Header from "../../components/header/header";
-import Tabs from "../../components/tab/tab";
+import Navbar from "../navbar/navbar";
 import Balance from "../../components/balance/balance";
 import NewTransaction from "../../components/new-transaction/new-transaction";
 
@@ -10,7 +10,7 @@ import  "./layout.scss";
 import useAccount from '@/hooks/useAccount';
 import Image from 'next/image';
 import ClientStatement from '../userStatement/userStatement';
-import TabletNavbar from '../tab/tabletNavbar';
+import TabletNavbar from '../navbar/tabletNavbar';
 
 const LoggedInLayout: React.FC = () => {
   const { user } = useAccount();
@@ -22,7 +22,7 @@ const LoggedInLayout: React.FC = () => {
         <TabletNavbar />
         <section className="main-logged__section pt-6 flex justify-center items-start h-screen">
           <div className="main-logged__side-menu">
-            <Tabs />
+            <Navbar />
           </div>
 
           <div className="main-logged__main w-[690px] h-full mx-6">
