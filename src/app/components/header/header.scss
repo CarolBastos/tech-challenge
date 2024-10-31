@@ -1,1 +1,19 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
+
+@media (max-width: 360px) {
+  .header__mobile-navbar {
+    display: block;
+  }
+}
+
+@media (min-width: 361px) {
+  .header__mobile-navbar {
+    display: none;
+  }
+}
+
+@media (max-width: 361px) {
+  .header__user-name {
+    display: none;
+  }
+}

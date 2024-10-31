@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./tab.scss";
+import "./navbar.scss";
 import { navItems } from "./config";
 
-export default function Tabs() {
+export default function Navbar() {
   const [activeLink, setActiveLink] = useState("home");
 
   const handleClick = (link: string) => {
