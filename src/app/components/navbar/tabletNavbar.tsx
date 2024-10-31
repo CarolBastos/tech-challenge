@@ -3,7 +3,7 @@ import { navItems } from './config';
 
 
 const TabletNavbar = () => {
-  const [activeLink, setActiveLink] = useState<string>('home');
+  const [activeLink, setActiveLink] = useState<string>(navItems[0].link);
 
   const handleClick = (link: string) => {
     setActiveLink(link);
@@ -14,7 +14,7 @@ const TabletNavbar = () => {
       {navItems.map((item) => (
         <a
           key={item.link}
-          href="#"
+          href={`#${item.link}`}
           className={`px-4 py-2 ${
             activeLink === item.link
               ? 'text-tertiary-color font-semibold border-b-2 border-tertiary-color'

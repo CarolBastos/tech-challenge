@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import "./navbar.scss";
 import { navItems } from "./config";
 
 export default function Navbar() {
-  const [activeLink, setActiveLink] = useState("home");
+  const [activeLink, setActiveLink] = useState(navItems[0].link);
 
-  const handleClick = (link: string) => {
+  const handleClick = (link: SetStateAction<string>) => {
     setActiveLink(link);
   };
 
@@ -15,7 +15,7 @@ export default function Navbar() {
         {navItems.map((item, index) => (
           <a
             key={item.link}
-            href="#"
+            href={`#${item.link}`}
             className={`w-full py-4 ${
               activeLink === item.link
                 ? 'text-tertiary-color font-semibold border-b-2 border-tertiary-color lg:pt-4'
