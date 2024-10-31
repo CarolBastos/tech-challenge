@@ -34,7 +34,7 @@ export default function MobileNavbar() {
       </a>
 
       {isOpen && (
-        <div className="fixed top-0 left-0 w-[200px] h-auto bg-soft-green shadow-lg z-50 flex flex-col items-center pl-5 pr-5 pb-7">
+        <div className="fixed top-0 left-0 w-[210px] h-auto bg-soft-green shadow-lg z-50 flex flex-col items-center pl-5 pr-5 pb-7 pt-10">
           <button
             onClick={toggleMenu}
             className="absolute top-2 right-2 text-tertiary-color hover:text-gray-800 text-2xl"
@@ -46,13 +46,13 @@ export default function MobileNavbar() {
               <a
                 key={item.link}
                 href={`#${item.link}`}
-                className={`block py-2 px-4 text-md text-black hover:bg-gray-200 text-center w-full ${
+                className={`block py-2 px-4  text-md text-black hover:bg-gray-200 text-center w-full ${
                   activeLink === item.link
-                    ? "text-tertiary-color font-semibold border-b-2 border-tertiary-color lg:pt-4"
-                    : "lg:pt-4"
+                    ? "text-tertiary-color font-bold border-b-2 border-tertiary-color lg:pt-4"
+                    : "text-black font-normal"
                 } ${
                   index !== navItems.length - 1
-                    ? "lg:border-b lg:border-black"
+                    ? "border-b border-black"
                     : ""
                 }`}
                 onClick={() => handleClick(item.link)}
