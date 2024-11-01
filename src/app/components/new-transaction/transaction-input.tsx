@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./new-transaction.scss";
 
 interface TransactionInputProps {
@@ -14,6 +14,7 @@ const TransactionInput: React.FC<TransactionInputProps> = ({
   onChange,
   className
 }) => {
+  const [isValueRequired, setIsValueRequired] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let inputValue = event.target.value;
@@ -30,6 +31,8 @@ const TransactionInput: React.FC<TransactionInputProps> = ({
       inputValue = `0,0${inputValue}`;
     }
 
+    setIsValueRequired(false);
+
     const formattedEvent = {
       ...event,
       target: {
@@ -39,6 +42,12 @@ const TransactionInput: React.FC<TransactionInputProps> = ({
     };
 
     onChange(formattedEvent as React.ChangeEvent<HTMLInputElement>);
+  };
+
+  const handleBlur = () => {
+    if (!value) {
+      setIsValueRequired(true);
+    }
   };
 
   return (
@@ -55,8 +64,14 @@ const TransactionInput: React.FC<TransactionInputProps> = ({
         className="transaction-input__input-field text-[16px]"
         value={value}
         onChange={handleInputChange}
+        onBlur={handleBlur}
         placeholder="00,00"
       />
+      {isValueRequired && (
+        <p className="text-red-500 text-sm mt-1">
+          Este campo é obrigatório.
+        </p>
+      )}
     </div>
   );
 };

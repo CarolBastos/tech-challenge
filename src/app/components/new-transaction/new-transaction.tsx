@@ -17,16 +17,24 @@ export default function NewTransaction({ updateBalance, updateStatement, balance
   const [selectedValue, setSelectedValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [transactionValue, setTransactionValue] = useState<string>("");
+  const [hasError, setHasError] = useState(false);
+  const [isValueRequired, setIsValueRequired] = useState(false);
 
   const handleToggle = () => setIsOpen((prev) => !prev);
 
   const handleSelect = (value: string) => {
     setSelectedValue(value);
     setIsOpen(false);
+    setHasError(false);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTransactionValue(event.target.value);
+    const value = event.target.value;
+    setTransactionValue(value);
+
+    if (value) {
+      setIsValueRequired(false);
+    }
   };
 
   function descriptionHandler(description: string): TypesOfTransaction{
@@ -71,6 +79,16 @@ export default function NewTransaction({ updateBalance, updateStatement, balance
 
 
   const handleClick = async () => {
+    if (!selectedValue) {
+      setHasError(true);
+      return;
+    }
+
+    if (!transactionValue) {
+      setIsValueRequired(true);
+      return; 
+    }
+
     const newTransactionValue = replaceCommaWithDot(transactionValue);
     const amount = Number(newTransactionValue);
 
@@ -152,7 +170,9 @@ export default function NewTransaction({ updateBalance, updateStatement, balance
             </SelectOption>
           </ul>
         )}
+        
       </div>
+      {hasError && <p className="text-red-500 mt-2">Selecione um tipo de transação.</p>}
 
       <TransactionInput
         className="new-transaction__transaction-input"
@@ -160,6 +180,11 @@ export default function NewTransaction({ updateBalance, updateStatement, balance
         value={transactionValue}
         onChange={handleChange}
       />
+      {isValueRequired && (
+        <p className="text-red-500 text-sm mt-1">
+          Este campo é obrigatório.
+        </p>
+      )}
 
       <div className="mt-8">
         <Button className="new-transaction__transaction-button" text="Concluir transação" onClick={handleClick} />
