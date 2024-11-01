@@ -4,7 +4,7 @@ import Tabs from "../../components/tab/tab";
 import Balance from "../../components/balance/balance";
 import NewTransaction from "../../components/new-transaction/new-transaction";
 
-import  "./layout.scss";
+import "./layout.scss";
 import useAccount from '@/hooks/useAccount';
 import Image from 'next/image';
 import { TransactionCard } from '../generics/TransactionCard';
@@ -15,28 +15,26 @@ const LoggedInLayout: React.FC = () => {
   return (
     <div>
       <Header userName={user?.name} />
-      <main className="main-logged bg-soft-green h-[100vh] w-full"> 
-        <section className="main-logged__section pt-6 flex justify-center items-start h-screen">
-          <div className="main-logged__side-menu w-[180px] h-full bg-menu-gray rounded-lg">
-            <Tabs />
-          </div>
+      <main className="w-full bg-tertiary-400">
+        <section className="max-w-sm h-full flex flex-col mx-auto pt-6 md:max-w-md gap-8 lg:max-w-lg lg:flex-row lg:px-6">
+          <Tabs />
 
-          <div className="main-logged__main w-[690px] h-full mx-6">
+          <div className="w-full flex flex-col gap-6 pb-6">
             <Balance user={user} />
             <NewTransaction />
           </div>
 
-          <div className="main-logged w-[282px] px-6 py-8 bg-menu-gray">
+          <div className="main-logged w-[282px] px-6 py-8 bg-neutral-200">
             <div className='flex gap-12 items-center justify-between mb-6'>
               <div className='font-bold text-xl'>
                 Extrato
               </div>
               <div className='flex justify-between gap-4'>
                 <button className='flex items-center justify-center rounded-full bg-sky-900 h-10 w-10'>
-                 <Image src="/images/pencil.svg" alt="imagem" width={24} height={36}/>
+                  <Image src="/images/pencil.svg" alt="imagem" width={24} height={36} />
                 </button>
                 <button className='flex items-center justify-center rounded-full bg-sky-900 h-10 w-10'>
-                 <Image src="/images/trash.svg" alt="imagem" width={24} height={36}/>
+                  <Image src="/images/trash.svg" alt="imagem" width={24} height={36} />
                 </button>
               </div>
             </div>

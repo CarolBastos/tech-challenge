@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
 import { User } from '@/app/interfaces';
-import "./balance.scss";
 import Image from "next/image";
 
 interface BalanceProps {
@@ -20,7 +19,7 @@ const Balance: React.FC<BalanceProps> = ({ user }) => {
   };
 
   return (
-    <div className="relative h-[40.9375rem] w-full items-center bg-primary-color text-white font-inter p-10 rounded-lg md:h-[25.125rem] lg:grow md:flex z-20">
+    <div className="relative h-[40.9375rem] w-full items-center bg-primary-500 text-white font-inter p-10 rounded-lg md:h-[25.125rem] md:flex z-20">
       <div className="w-full flex flex-col items-center gap-6 mb-10 md:h-full md:items-start md:m-0">
         {user ? (
           <h1 className="text-white text-xl font-semibold">
@@ -32,16 +31,16 @@ const Balance: React.FC<BalanceProps> = ({ user }) => {
         </h2>
       </div>
       <div className="w-full flex flex-col gap-4 z-20">
-        <div className="flex items-center pb-4 border-b-2 gap-6 lg:border-secondary-color">
+        <div className="flex items-center pb-4 border-b-2 gap-6 lg:border-secondary-500">
           <p className="text-lg">Saldo</p>
           {isBalanceVisible ? (
             <EyeIcon
-              className="w-6 h-6 cursor-pointer lg:text-secondary-color"
+              className="w-6 h-6 cursor-pointer lg:text-secondary-500"
               onClick={toggleBalanceVisibility}
             />
           ) : (
             <EyeOffIcon
-              className="w-6 h-6 cursor-pointer lg:text-secondary-color"
+              className="w-6 h-6 cursor-pointer lg:text-secondary-500"
               onClick={toggleBalanceVisibility}
             />
           )}

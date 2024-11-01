@@ -10,15 +10,16 @@ const config: Config = {
     extend: {
       colors: {
         //brand-colors
-        "primary-color": "#004D61",
-        "secondary-color": "#FF5031",
-        "tertiary-color": "#47A138",
+        "primary-500": "#004D61",
+        "secondary-500": "#FF5031",
+        "tertiary-500": "#47A138",
+        "tertiary-400": "#E4EDE3",
+        "tertiary-300": "#DEE9EA",
         //neutral-colors
-        "accent-color": "#DEE9EA",
-        "link-menu-color": "#024D60",
-        "new-transaction": "#CBCBCB",
-        "soft-green": "#E4EDE3",
-        "menu-gray": "#f5f5f5"
+        "neutral-400": "#000000",
+        "neutral-300": "#CBCBCB",
+        "neutral-200": "#F5F5F5",
+        "neutral-100": "#FFFFFF",
         //extra-colors
         //warning-colors
       },

@@ -16,7 +16,7 @@ const WelcomeLayout: React.FC = ({
   return (
     <div>
       <WelcomeHeader onViewLoginForm={() => setViewLoginForm(true)} onViewUserRegisterForm={() => setUserRegisterForm(true)}/>
-        <main className="welcome-layout-main w-full bg-gradient-to-b from-primary-color to-light">
+        <main className="welcome-layout-main w-full bg-gradient-to-b from-primary-500 to-light">
       
           <div className="max-w-sm flex flex-col items-center mx-auto py-20 gap-10 md:max-w-md lg:max-w-lg lg:px-6">
             <div className="flex flex-col items-center gap-10 w-full lg:flex-row">

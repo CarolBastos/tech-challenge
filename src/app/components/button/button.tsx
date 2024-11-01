@@ -11,7 +11,7 @@ interface DynamicButtonProps {
 }
 
 const Button: React.FC<DynamicButtonProps> = ({
-  backgroundColor = "bg-primary-color",
+  backgroundColor = "bg-primary-500",
   textColor = "text-white",
   width = "w-[250px]",
   text,

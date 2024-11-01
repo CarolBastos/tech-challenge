@@ -10,7 +10,7 @@ interface SelectOptionProps {
 const SelectOption: React.FC<SelectOptionProps> = ({ value, onClick, children }) => (
   <li className="select-option">
     <button
-      className="select-option__button block w-full text-gray-700 py-2 px-3 text-left"
+      className="w-full text-sm text-neutral-400 p-6 hover:bg-tertiary-300"
       onClick={() => onClick(value)}
     >
       {children}

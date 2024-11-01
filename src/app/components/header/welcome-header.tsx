@@ -29,7 +29,7 @@ export default function WelcomeHeader({onViewLoginForm, onViewUserRegisterForm}:
             />
           </a>
           <nav>
-            <ul className="hidden md:flex items-center gap-4 inline text-md text-tertiary-color font-semibold">
+            <ul className="hidden md:flex items-center gap-4 inline text-md text-tertiary-500 font-semibold">
               <li>
                 <a href="#">Sobre</a>
               </li>
@@ -48,10 +48,10 @@ export default function WelcomeHeader({onViewLoginForm, onViewUserRegisterForm}:
           />
         </a>
         <div className="hidden md:flex flex gap-4">
-          <button onClick={() => onViewUserRegisterForm(true)} className="bg-tertiary-color text-white p-3.5 rounded-lg">
+          <button onClick={() => onViewUserRegisterForm(true)} className="bg-tertiary-500 text-white p-3.5 rounded-lg">
             Abrir conta
           </button>
-          <button onClick={() => onViewLoginForm(true)} className="border-2 border-tertiary-color text-tertiary-color font-semibold p-3.5 rounded-lg">
+          <button onClick={() => onViewLoginForm(true)} className="border-2 border-tertiary-500 text-tertiary-500 font-semibold p-3.5 rounded-lg">
             Já tenho conta
           </button>
         </div>
