@@ -7,7 +7,11 @@ import Button from "../../components/button/button";
 import { TypesOfTransaction } from "@/app/interfaces";
 import { user } from "@/mocks/userAccount";
 
-export default function NewTransaction() {
+interface NewTransactionProps {
+  updateBalance: (transactionAmount: number) => void;
+}
+
+export default function NewTransaction({ updateBalance }: NewTransactionProps) {
   const [selectedValue, setSelectedValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [transactionValue, setTransactionValue] = useState<string>("");
@@ -21,7 +25,7 @@ export default function NewTransaction() {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTransactionValue(event.target.value);
-    console.log(transactionValue)
+    console.log("transactionValue", event.target.value)
   };
 
   function descriptionHandler(description: string): TypesOfTransaction{
@@ -48,35 +52,20 @@ export default function NewTransaction() {
     }
       
     const description = descriptionHandler(selectedValue)
-  
-    let balance = 0;
 
-    if(description == TypesOfTransaction.Deposito){
-      balance = amount + user[0].balance;
-    }
-    else{
-      balance = amount - user[0].balance
-    }
-
-    try {
-      const response = await fetch("../../api/account", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(balance),
-      });
-
-      if (response.ok) {
-        const userBalance = await response.json();
-        console.log("Balance altered:", userBalance);
+    let newBalance: number;
+    if (description === TypesOfTransaction.Deposito) { 
+      newBalance = user[0].balance + amount;
+    } else { 
+      if (user[0].balance >= amount) {
+        newBalance = user[0].balance - amount; 
       } else {
-        const errorData = await response.json();
-        console.error("Error:", errorData.error);
+        newBalance = user[0].balance;
+        console.log("não foi possivel retirar o saldo", newBalance)
       }
-    } catch (error) {
-      console.error("Network error:", error);
     }
+
+    updateBalance(newBalance);
   }
 
 

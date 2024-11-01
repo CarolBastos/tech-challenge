@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useState } from 'react';
 import Header from "../../components/header/header";
 import Navbar from "../navbar/navbar";
 import Balance from "../../components/balance/balance";
@@ -13,7 +13,13 @@ import ClientStatement from '../userStatement/userStatement';
 import TabletNavbar from '../navbar/tabletNavbar';
 
 const LoggedInLayout: React.FC = () => {
-  const { user } = useAccount();
+  const { user, setUser } = useAccount();
+
+  const updateBalance = (transactionAmount: number): void => {
+    if (user) {
+      setUser({ ...user, balance: transactionAmount });
+    }
+  };
 
   return (
     <div>
@@ -27,7 +33,7 @@ const LoggedInLayout: React.FC = () => {
 
           <div className="main-logged__main w-[690px] h-full mx-6">
             <Balance user={user} />
-            <NewTransaction />
+            <NewTransaction updateBalance={updateBalance}/>
           </div>
 
           <div className="main-logged w-[282px] px-6 py-8 bg-menu-gray">
