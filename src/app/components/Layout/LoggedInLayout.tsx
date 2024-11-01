@@ -1,19 +1,39 @@
 "use client"
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from "../../components/header/header";
 import Navbar from "../navbar/navbar";
 import Balance from "../../components/balance/balance";
 import NewTransaction from "../../components/new-transaction/new-transaction";
 
 import  "./layout.scss";
+import { statement } from "../../../mocks/statement";
 import useAccount from '@/hooks/useAccount';
 import Image from 'next/image';
 import ClientStatement from '../userStatement/userStatement';
 import TabletNavbar from '../navbar/tabletNavbar';
+import { Transaction } from '@/app/interfaces';
 
 const LoggedInLayout: React.FC = () => {
-  const { user } = useAccount();
+  const { user, setUser } = useAccount();
+  const [transactions, setTransactions] = useState(statement?.transactions.slice().reverse());
+
+  // Monitora as mudanças no `statement` e atualiza `transactions`
+    useEffect(() => {
+        setTransactions(statement?.transactions.slice().reverse());
+    }, [statement]);
+
+  const updateBalance = (transactionAmount: number): void => {
+    if (user) {
+      setUser({ ...user, balance: transactionAmount });
+    }
+  };
+
+  const updateStatement = (transaction: Transaction): void => {
+    if (transactions) {
+      setTransactions(prevTransactions => [transaction, ...prevTransactions]);
+    }
+  };
 
   return (
     <div>
@@ -27,7 +47,7 @@ const LoggedInLayout: React.FC = () => {
 
           <div className="main-logged__main w-[690px] h-full mx-6">
             <Balance user={user} />
-            <NewTransaction />
+            <NewTransaction updateBalance={updateBalance} updateStatement={updateStatement}/>
           </div>
 
           <div className="main-logged w-[282px] px-6 py-8 bg-menu-gray">
@@ -45,7 +65,7 @@ const LoggedInLayout: React.FC = () => {
               </div>
             </div>
             <div className='flex flex-col gap-6'>
-              <ClientStatement />
+              <ClientStatement transactions={transactions}/>
             </div>
           </div>
         </section>

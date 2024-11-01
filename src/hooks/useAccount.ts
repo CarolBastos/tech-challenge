@@ -25,7 +25,7 @@ const useAccount = () => {
     fetchUserData();
   }, []);
 
-  return { user, error };
+  return { user, setUser, error };
 };
 
 export default useAccount;

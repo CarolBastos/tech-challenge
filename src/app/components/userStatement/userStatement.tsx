@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
-import { statement } from "../../../mocks/statement";
 import { TransactionCard } from "../generics/TransactionCard";
+import { Transaction } from "@/app/interfaces";
 
-
-export default function ClientStatement () {
-    const [transactions, setTransactions] = useState(statement?.transactions.slice().reverse());
-
-  // Monitora as mudanças no `statement` e atualiza `transactions`
-    useEffect(() => {
-        setTransactions(statement?.transactions.slice().reverse());
-    }, [statement]);
+interface statementProp{
+    transactions: Transaction[]
+}
+export default function ClientStatement ({transactions}:statementProp) {
 
     function convertDate(date: string):string{
         const year = date.slice(0,4);
