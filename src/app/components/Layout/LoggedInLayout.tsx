@@ -47,7 +47,7 @@ const LoggedInLayout: React.FC = () => {
 
           <div className="main-logged__main w-[690px] h-full mx-6">
             <Balance user={user} />
-            <NewTransaction updateBalance={updateBalance} updateStatement={updateStatement}/>
+            <NewTransaction updateBalance={updateBalance} updateStatement={updateStatement}balance={user ? user.balance : 0}/>
           </div>
 
           <div className="main-logged w-[282px] px-6 py-8 bg-menu-gray">

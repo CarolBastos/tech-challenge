@@ -5,14 +5,15 @@ import "./new-transaction.scss";
 import { SelectOption, TransactionInput } from "./index";
 import Button from "../../components/button/button";
 import { Transaction, TypesOfTransaction } from "@/app/interfaces";
-import { user } from "@/mocks/userAccount";
+
 
 interface NewTransactionProps {
+  balance: number ;
   updateBalance: (transactionAmount: number) => void;
-  updateStatement: (transaction: Transaction) => void
+  updateStatement: (transaction: Transaction) => void;
 }
 
-export default function NewTransaction({ updateBalance, updateStatement }: NewTransactionProps) {
+export default function NewTransaction({ updateBalance, updateStatement, balance }: NewTransactionProps) {
   const [selectedValue, setSelectedValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [transactionValue, setTransactionValue] = useState<string>("");
@@ -55,12 +56,12 @@ export default function NewTransaction({ updateBalance, updateStatement }: NewTr
 
     let newBalance: number;
     if (description === TypesOfTransaction.Deposito) { 
-      newBalance = user[0].balance + amount;
+      newBalance = balance + amount;
     } else { 
-      if (user[0].balance >= amount) {
-        newBalance = user[0].balance - amount; 
+      if (balance >= amount) {
+        newBalance = balance - amount; 
       } else {
-        newBalance = user[0].balance;
+        newBalance = balance;
         console.log("não foi possivel retirar o saldo", newBalance)
       }
     }
