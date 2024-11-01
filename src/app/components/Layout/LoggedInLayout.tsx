@@ -50,7 +50,7 @@ const LoggedInLayout: React.FC = () => {
             <NewTransaction updateBalance={updateBalance} updateStatement={updateStatement}balance={user ? user.balance : 0}/>
           </div>
 
-          <div className="main-logged w-[282px] px-6 py-8 bg-menu-gray">
+          <div className="main-logged w-[282px] px-6 py-8 bg-menu-gray lg:rounded-lg">
             <div className='flex gap-12 items-center justify-between mb-6'>
               <div className='font-bold text-xl'>
                 Extrato
@@ -64,7 +64,7 @@ const LoggedInLayout: React.FC = () => {
                 </button>
               </div>
             </div>
-            <div className='flex flex-col gap-6'>
+            <div className='flex flex-col gap-6 h-[512px] overflow-y-auto pr-2 custom-scroll'>
               <ClientStatement transactions={transactions}/>
             </div>
           </div>
