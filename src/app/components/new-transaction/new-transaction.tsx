@@ -4,14 +4,15 @@ import "./new-transaction.scss";
 
 import { SelectOption, TransactionInput } from "./index";
 import Button from "../../components/button/button";
-import { TypesOfTransaction } from "@/app/interfaces";
+import { Transaction, TypesOfTransaction } from "@/app/interfaces";
 import { user } from "@/mocks/userAccount";
 
 interface NewTransactionProps {
   updateBalance: (transactionAmount: number) => void;
+  updateStatement: (transaction: Transaction) => void
 }
 
-export default function NewTransaction({ updateBalance }: NewTransactionProps) {
+export default function NewTransaction({ updateBalance, updateStatement }: NewTransactionProps) {
   const [selectedValue, setSelectedValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [transactionValue, setTransactionValue] = useState<string>("");
@@ -25,7 +26,6 @@ export default function NewTransaction({ updateBalance }: NewTransactionProps) {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTransactionValue(event.target.value);
-    console.log("transactionValue", event.target.value)
   };
 
   function descriptionHandler(description: string): TypesOfTransaction{
@@ -98,6 +98,7 @@ export default function NewTransaction({ updateBalance }: NewTransactionProps) {
           await handleBalance();
           setSelectedValue("");
           setTransactionValue("");
+          updateStatement(newTransaction);
     
         } else {
           const errorData = await response.json();
