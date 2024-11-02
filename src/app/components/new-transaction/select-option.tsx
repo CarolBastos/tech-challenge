@@ -1,5 +1,4 @@
 import React from 'react';
-import "./new-transaction.scss";
 
 interface SelectOptionProps {
   value: string;

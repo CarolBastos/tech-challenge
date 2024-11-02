@@ -1,10 +1,7 @@
 import React from "react";
-import "./button.scss";
 
 interface DynamicButtonProps {
   backgroundColor?: string;
-  textColor?: string;
-  width?: string;
   text: string;
   onClick?: () => void;
   className?: string; 
@@ -12,8 +9,6 @@ interface DynamicButtonProps {
 
 const Button: React.FC<DynamicButtonProps> = ({
   backgroundColor = "bg-primary-500",
-  textColor = "text-white",
-  width = "w-[250px]",
   text,
   onClick,
   className
@@ -21,7 +16,7 @@ const Button: React.FC<DynamicButtonProps> = ({
   return (
       <button
         onClick={onClick}
-        className={`${backgroundColor} ${textColor} ${width} ${className} button-default w-auto px-4 rounded-lg flex items-center justify-center`}
+        className={`${backgroundColor} ${className} flex items-center justify-center bg-primary-500 font-inter font-semibold text-white text-sm button-default px-3 rounded-lg md:p-3`}
       >
         {text}
       </button>
