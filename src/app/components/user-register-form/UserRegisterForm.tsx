@@ -1,13 +1,19 @@
 "use client";
 
 import React, { FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
-import { InputForm } from "../generics/InputForm";
+
 import Image from "next/image";
+import { InputForm } from "../generics/InputForm";
+import { useRouter } from "next/navigation";
 
 interface IUserRegisterForm {
   viewUserRegisterForm: boolean;
   onClose: (value: boolean) => void;
+}
+
+interface IResponse {
+  error: boolean;
+  message: string;
 }
 
 export const UserRegisterForm = ({
@@ -19,14 +25,14 @@ export const UserRegisterForm = ({
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [terms, setTerms] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>("");
+  const [response, setResponse] = useState<IResponse | null>(null);
 
   const handleClose = () => {
     setName("");
     setEmail("");
     setPassword("");
     setTerms(false);
-    setMessage("");
+    setResponse(null);
     onClose(false);
   };
 
@@ -42,12 +48,17 @@ export const UserRegisterForm = ({
     });
 
     const data = await res.json();
-
     if (res.ok) {
-      setMessage("Cadastro realizado com sucesso!");
+      setResponse({
+        message: "Cadastro realizado com sucesso!",
+        error: false,
+      });
       router.push("/perfil");
     } else {
-      setMessage(data.error || "Erro ao criar conta.");
+      setResponse({
+        message: data.error || "Erro ao criar conta.",
+        error: true,
+      });
     }
   };
 
@@ -57,7 +68,7 @@ export const UserRegisterForm = ({
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 px-6">
           <form
             onSubmit={handleSubmit}
-            className="w-full max-w-[792px] bg-stone-50 h-svh flex flex-col gap-8 py-8 px-28 relative"
+            className="w-full max-w-[792px] bg-stone-50 h-[100vh] flex flex-col gap-8 py-8 px-6 relative overflow-y-auto"
           >
             <button
               className="absolute right-4 top-4"
@@ -72,41 +83,86 @@ export const UserRegisterForm = ({
               <Image
                 src="/images/user-register.svg"
                 alt="imagem"
-                width={330}
-                height={267}
+                width={355}
+                height={260}
               />
-              <h1 className="font-bold text-xl">
+              <h1 className="font-bold text-xl text-center">
                 Preencha os campos abaixo para criar sua conta corrente!
               </h1>
             </div>
-            <div>
-              <div className="flex flex-col gap-6 mb-2">
-                <InputForm
-                  label="Nome"
-                  placeholder="Digite seu nome completo"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <InputForm
-                  label="Email"
-                  placeholder="Digite seu email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <InputForm
-                  label="Senha"
-                  placeholder="Digite sua senha"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <div className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    checked={terms}
-                    onChange={(e) => setTerms(e.target.checked)}
-                  />
-                  <label>Li e estou ciente quanto às condições de tratamento dos meus dados conforme descrito na Política de Privacidade do banco.</label>
+            {response && !response.error ? (
+              <div
+                className="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:text-green-400"
+                role="alert"
+              >
+                <svg
+                  className="flex-shrink-0 inline w-4 h-4 me-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                </svg>
+                <div>
+                  <span className="font-medium">{response.message}</span>
                 </div>
+              </div>
+            ) : (
+              response && (
+                <div
+                  className="flex items-center p-4 mb-0 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
+                  role="alert"
+                >
+                  <svg
+                    className="flex-shrink-0 inline w-4 h-4 mr-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                  </svg>
+                  <div>
+                    <span className="font-medium">{response.message}</span>
+                  </div>
+                </div>
+              )
+            )}
+            <div className="flex flex-col gap-6">
+              <InputForm
+                label="Nome"
+                placeholder="Digite seu nome completo"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+              <InputForm
+                label="Email"
+                placeholder="Digite seu email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <InputForm
+                label="Senha"
+                placeholder="Digite sua senha"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                type="password"
+              />
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={terms}
+                  onChange={(e) => setTerms(e.target.checked)}
+                  required
+                />
+                <label>
+                  Li e estou ciente quanto às condições de tratamento dos meus
+                  dados conforme descrito na Política de Privacidade do banco.
+                </label>
               </div>
             </div>
             <div className="flex items-center justify-center">
@@ -117,7 +173,6 @@ export const UserRegisterForm = ({
                 Criar conta
               </button>
             </div>
-            {message && <p>{message}</p>}
           </form>
         </div>
       )}
