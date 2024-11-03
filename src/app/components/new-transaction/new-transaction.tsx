@@ -128,7 +128,7 @@ export default function NewTransaction({ updateBalance, updateStatement, balance
   };
 
   return (
-    <div className="relative w-full flex flex-col items-center gap-6 font-inter bg-neutral-300 p-8 rounded-lg h-[39.5625rem] md:h-[29.875rem] md:items-start">
+    <div className="relative w-full flex flex-col items-center gap-6 font-inter bg-neutral-300 p-8 max-[767px]:p-4 rounded-lg h-[39.5625rem] md:h-[29.875rem] md:items-start">
       <h2 className="text-xl text-center text-tertiary-300 font-semibold z-20">
         Nova transação
       </h2>
