@@ -49,7 +49,7 @@ const LoggedInLayout: React.FC = () => {
             <NewTransaction updateBalance={updateBalance} updateStatement={updateStatement}balance={user ? user.balance : 0}/>
           </div>
 
-          <div className="main-logged w-[282px] h-[650px] px-6 py-8 bg-neutral-200 rounded-lg">
+          <div className="main-logged lg:w-[282px] md:w-full h-[650px] px-6 py-8 bg-neutral-200 rounded-lg">
             <div className='flex gap-12 items-center justify-between mb-6'>
               <div className='font-bold text-xl'>
                 Extrato
