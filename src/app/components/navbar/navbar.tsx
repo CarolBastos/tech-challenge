@@ -9,8 +9,8 @@ export default function Navbar() {
   };
 
   return (
-    <div className="navbar hidden md:inline lg:flex lg:flex-col lg:bg-neutral-100 text-center lg:rounded-lg ">
-      <nav className="flex lg:flex-col w-full p-8 bg-neutral-100 rounded-lg">
+    <div className="navbar hidden md:inline md:bg-transparent lg:flex lg:flex-col lg:bg-neutral-100 text-center lg:rounded-lg ">
+      <nav className="flex lg:flex-col w-full p-8 md:p-0 md:px-4 bg-neutral-100 md:bg-transparent rounded-lg">
         {navItems.map((item, index) => (
           <a
             key={item.link}
