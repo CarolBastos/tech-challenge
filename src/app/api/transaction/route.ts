@@ -25,10 +25,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid date" }, { status: 400 });
   }
 
-  const currentDate = new Date().toISOString();
-  const newDate = new Date(transaction.date).toISOString();
+  const currentDate = new Date().toISOString().split("T")[0];
+  const newDate = new Date(transaction.date).toISOString().split("T")[0];
+  console.log("Data atual: ", currentDate, "Data Transferência: ", newDate)
 
-  if (newDate <= currentDate) {
+  if (newDate < currentDate) {
     return NextResponse.json(
       { error: "Date must be greater than the current date" },
       { status: 400 }

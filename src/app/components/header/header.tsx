@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import "./header.scss";
+import MobileNavbar from "../navbar/mobileNavbar";
 
 interface HeaderProps {
   userName?: string;
@@ -11,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({ userName }) => {
     <header className="w-full text-sm text-white bg-primary-500 font-inter">
       <div className="max-w-sm flex flex-row-reverse items-center justify-between mx-auto py-7 md:max-w-md md:justify-items-end lg:max-w-lg lg:px-6">
         <div className="flex items-center gap-10">
-          <span className="hidden md:inline">
+          <span className="header__user-name">
             {userName}
           </span>
           <Image
@@ -21,14 +22,10 @@ const Header: React.FC<HeaderProps> = ({ userName }) => {
             height={40}
           />
         </div>
-        <a href="/welcome" className="inline-block md:hidden lg:hidden">
-          <Image
-            src="/images/icone-menu.svg"
-            alt="ByteBank logo"
-            width={32}
-            height={32}
-          />
-        </a>
+
+        <div className="header__mobile-navbar">
+          <MobileNavbar />
+        </div>
       </div>
     </header>
   );
