@@ -67,14 +67,14 @@ const Balance: React.FC<BalanceProps> = ({ user }) => {
       />
       <Image
             src="/images/balance-bg-squares-1.svg"
-            alt="ByteBank logo"
+            alt="Quadrado superior"
             width={32}
             height={32}
             className='absolute top-0 max-[767px]:left-0 w-auto z-0 min-[768px]:right-0 lg:hidden'
       />
       <Image
             src="/images/balance-bg-squares-2.svg"
-            alt="ByteBank logo"
+            alt="Quadrado inferior"
             width={32}
             height={32}
             className='absolute bottom-0 right-0 w-auto z-0 md:left-0 lg:hidden'
