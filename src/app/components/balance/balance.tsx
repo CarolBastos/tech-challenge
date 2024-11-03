@@ -1,7 +1,10 @@
+"use client";
+
 import React, { useState } from 'react';
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
 import { User } from '@/app/interfaces';
 import Image from "next/image";
+import CurrentDate from './current-date';
 
 interface BalanceProps {
   user: User | null; 
@@ -26,9 +29,7 @@ const Balance: React.FC<BalanceProps> = ({ user }) => {
             Olá, {user.name?.split(' ')[0]}! :)
           </h1>
         ) : ''}
-        <h2 className="text-xxs">
-          Quinta-feira, 08/09/2022
-        </h2>
+        <CurrentDate />
       </div>
       <div className="w-full flex flex-col gap-4 z-20">
         <div className="flex items-center pb-4 border-b-2 gap-6 lg:border-secondary-500">

@@ -3,25 +3,128 @@ import Image from "next/image";
 
 import { SelectOption, TransactionInput } from "./index";
 import Button from "../../components/button/button";
+import { Transaction, TypesOfTransaction } from "@/app/interfaces";
 
-export default function NewTransaction() {
+
+interface NewTransactionProps {
+  balance: number ;
+  updateBalance: (transactionAmount: number) => void;
+  updateStatement: (transaction: Transaction) => void;
+}
+
+export default function NewTransaction({ updateBalance, updateStatement, balance }: NewTransactionProps) {
   const [selectedValue, setSelectedValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [transactionValue, setTransactionValue] = useState<string>("");
+  const [hasError, setHasError] = useState(false);
+  const [isValueRequired, setIsValueRequired] = useState(false);
 
   const handleToggle = () => setIsOpen((prev) => !prev);
 
   const handleSelect = (value: string) => {
     setSelectedValue(value);
     setIsOpen(false);
+    setHasError(false);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTransactionValue(event.target.value);
+    const value = event.target.value;
+    setTransactionValue(value);
+
+    if (value) {
+      setIsValueRequired(false);
+    }
   };
 
-  const handleClick = () => {
-    console.log("clicou no botão")
+  function descriptionHandler(description: string): TypesOfTransaction{
+    if(description == 'Empréstimo e Financiamento'){
+      return TypesOfTransaction.Deposito
+    } else if(description == 'DOC/TED'){
+      return TypesOfTransaction.Transferencia
+    }else{
+      return TypesOfTransaction.Deposito
+    }
+  }
+
+  function replaceCommaWithDot(value: string) {
+    return value.replace(/,/g, '.');
+  }
+
+  const handleBalance = async () => {
+    const newTransactionValue = replaceCommaWithDot(transactionValue);
+    const amount = Number(newTransactionValue);
+
+    if (isNaN(amount) || amount <= 0) {
+      console.error("Invalid transaction amount");
+      return;
+    }
+      
+    const description = descriptionHandler(selectedValue)
+
+    let newBalance: number;
+    if (description === TypesOfTransaction.Deposito) { 
+      newBalance = balance + amount;
+    } else { 
+      if (balance >= amount) {
+        newBalance = balance - amount; 
+      } else {
+        newBalance = balance;
+        console.log("não foi possivel retirar o saldo", newBalance)
+      }
+    }
+
+    updateBalance(newBalance);
+  }
+
+
+  const handleClick = async () => {
+    if (!selectedValue) {
+      setHasError(true);
+      return;
+    }
+
+    if (!transactionValue) {
+      setIsValueRequired(true);
+      return; 
+    }
+
+    const newTransactionValue = replaceCommaWithDot(transactionValue);
+    const amount = Number(newTransactionValue);
+
+    if (isNaN(amount) || amount <= 0) {
+      console.error("Invalid transaction amount");
+      return;
+    }
+      const transaction = {
+        amount: amount,
+        description: descriptionHandler(selectedValue),
+        date: new Date().toISOString()
+      }
+  
+      try {
+        const response = await fetch("../../api/transaction", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(transaction),
+        });
+  
+        if (response.ok) {
+          const newTransaction = await response.json();
+          console.log("Transaction created:", newTransaction);
+          await handleBalance();
+          setSelectedValue("");
+          setTransactionValue("");
+          updateStatement(newTransaction);
+    
+        } else {
+          const errorData = await response.json();
+          console.error("Error:", errorData.error);
+        }
+      } catch (error) {
+        console.error("Network error:", error);
+      }
   };
 
   return (
@@ -65,7 +168,9 @@ export default function NewTransaction() {
             </SelectOption>
           </ul>
         )}
+        
       </div>
+      {hasError && <p className="text-red-500 mt-2">Selecione um tipo de transação.</p>}
 
       <TransactionInput
         className="z-20"
@@ -73,28 +178,38 @@ export default function NewTransaction() {
         value={transactionValue}
         onChange={handleChange}
       />
-      <Button className="max-w-[9rem] md:max-w-[15.625rem] md:w-full z-20" text="Concluir transação" onClick={handleClick} />
+      {isValueRequired && (
+        <p className="text-red-500 text-sm mt-1">
+          Este campo é obrigatório.
+        </p>
+      )}
+
+      <div className="mt-8">
+        <Button className="max-w-[9rem] md:max-w-[15.625rem] md:w-full relative z-50" text="Concluir transação" onClick={handleClick} />
+      </div>
+
       <Image
         src="/images/newtransaction-illustration.svg"
-        alt="ByteBank logo"
+        alt=""
         width={32}
         height={32}
-        className='absolute bottom-6 w-[16.5rem] md:w-[17.6875rem] z-10 max-[767px]:left-6 min-[768px]:right-6 lg:hidden'
+        className='absolute bottom-6 w-[16.5rem] md:w-[17.6875rem] z-0 max-[767px]:left-6 min-[768px]:right-6 lg:hidden'
       />
       <Image
         src="/images/newtransaction-bg-squares-1.svg"
-        alt="ByteBank logo"
+        alt="Quadrado superior"
         width={32}
         height={32}
         className='w-[9.125rem] absolute top-0 z-0 max-[767px]:left-0 min-[768px]:right-0'
       />
       <Image
         src="/images/newtransaction-bg-squares-1.svg"
-        alt="ByteBank logo"
+        alt="Quadrado inferior"
         width={32}
         height={32}
         className='w-[9.125rem] absolute bottom-0 right-0 z-0 md:left-0'
       />
+      
     </div>
   );
 }

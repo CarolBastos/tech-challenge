@@ -1,30 +1,55 @@
-import React from 'react';
+"use client"
+
+import React, { useEffect, useState } from 'react';
 import Header from "../../components/header/header";
-import Tabs from "../../components/tab/tab";
+import Navbar from "../navbar/navbar";
 import Balance from "../../components/balance/balance";
 import NewTransaction from "../../components/new-transaction/new-transaction";
 
-import "./layout.scss";
+import  "./layout.scss";
+import { statement } from "../../../mocks/statement";
 import useAccount from '@/hooks/useAccount';
 import Image from 'next/image';
-import { TransactionCard } from '../generics/TransactionCard';
+import ClientStatement from '../userStatement/userStatement';
+import TabletNavbar from '../navbar/tabletNavbar';
+import { Transaction } from '@/app/interfaces';
 
 const LoggedInLayout: React.FC = () => {
-  const { user } = useAccount();
+  const { user, setUser } = useAccount();
+  const [transactions, setTransactions] = useState(statement?.transactions.slice().reverse());
+
+  // Monitora as mudanças no `statement` e atualiza `transactions`
+    useEffect(() => {
+        setTransactions(statement?.transactions.slice().reverse());
+    }, [statement]);
+
+  const updateBalance = (transactionAmount: number): void => {
+    if (user) {
+      setUser({ ...user, balance: transactionAmount });
+    }
+  };
+
+  const updateStatement = (transaction: Transaction): void => {
+    if (transactions) {
+      setTransactions(prevTransactions => [transaction, ...prevTransactions]);
+    }
+  };
 
   return (
     <div>
       <Header userName={user?.name} />
-      <main className="w-full bg-tertiary-400">
+      <main className="w-full bg-tertiary-400"> 
         <section className="max-w-sm h-full flex flex-col mx-auto pt-6 md:max-w-md gap-8 lg:max-w-lg lg:flex-row lg:px-6">
-          <Tabs />
+          <div className="main-logged__side-menu">
+            <Navbar />
+          </div>
 
           <div className="w-full flex flex-col gap-6 pb-6">
             <Balance user={user} />
-            <NewTransaction />
+            <NewTransaction updateBalance={updateBalance} updateStatement={updateStatement}balance={user ? user.balance : 0}/>
           </div>
 
-          <div className="main-logged w-[282px] px-6 py-8 bg-neutral-200">
+          <div className="main-logged w-[282px] h-[650px] px-6 py-8 bg-neutral-200 rounded-lg">
             <div className='flex gap-12 items-center justify-between mb-6'>
               <div className='font-bold text-xl'>
                 Extrato
@@ -38,19 +63,8 @@ const LoggedInLayout: React.FC = () => {
                 </button>
               </div>
             </div>
-            <div className='flex flex-col gap-6'>
-              <TransactionCard
-                month='Novembro'
-                date='27/10/2024'
-                transactionType='Depósito'
-                transactionValue={30.00}
-              />
-              <TransactionCard
-                month='Novembro'
-                date='27/10/2024'
-                transactionType='Depósito'
-                transactionValue={30.00}
-              />
+            <div className='flex flex-col gap-6 h-[500px] overflow-y-auto pr-2 custom-scroll'>
+              <ClientStatement transactions={transactions}/>
             </div>
           </div>
         </section>
