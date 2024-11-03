@@ -153,7 +153,7 @@ export default function NewTransaction({ updateBalance, updateStatement, balance
           />
         </button>
         {isOpen && (
-          <ul className="absolute w-full bg-neutral-100 -mt-4 rounded-lg border border-primary-500 z-30 md:max-w-[20.9375rem]">
+          <ul className="absolute w-full bg-neutral-100 -mt-4 rounded-lg border border-tertiary-500 z-30 md:max-w-[20.9375rem]">
             <SelectOption value="Câmbio de Moeda" onClick={handleSelect}>
               Câmbio de Moeda
             </SelectOption>
