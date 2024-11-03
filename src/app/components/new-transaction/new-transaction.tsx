@@ -136,7 +136,7 @@ export default function NewTransaction({ updateBalance, updateStatement, balance
       <div className="relative w-full">
         <button
           type="button"
-          className="relative w-full flex justify-between items-center text-left text-sm p-3 bg-neutral-100 border border-tertiary-500 rounded-lg z-40 md:max-w-[20.9375rem]"
+          className="relative w-full flex justify-between items-center text-left text-sm p-3 bg-neutral-100 border border-primary-500 rounded-lg z-40 md:max-w-[20.9375rem]"
           onClick={handleToggle}
           aria-haspopup="listbox"
           aria-expanded={isOpen}
@@ -153,7 +153,7 @@ export default function NewTransaction({ updateBalance, updateStatement, balance
           />
         </button>
         {isOpen && (
-          <ul className="absolute w-full bg-neutral-100 -mt-4 rounded-lg border border-tertiary-500 z-30 md:max-w-[20.9375rem]">
+          <ul className="absolute w-full bg-neutral-100 -mt-4 rounded-lg border border-primary-500 z-30 md:max-w-[20.9375rem]">
             <SelectOption value="Câmbio de Moeda" onClick={handleSelect}>
               Câmbio de Moeda
             </SelectOption>
