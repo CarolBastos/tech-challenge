@@ -185,7 +185,7 @@ export default function NewTransaction({ updateBalance, updateStatement, balance
       )}
 
       <div className="mt-8">
-        <Button className="max-w-[9rem] md:max-w-[15.625rem] md:w-full relative z-50" text="Concluir transação" onClick={handleClick} />
+        <Button className="max-w-[9rem] md:max-w-[15.625rem] md:w-full relative z-20" text="Concluir transação" onClick={handleClick} />
       </div>
 
       <Image
