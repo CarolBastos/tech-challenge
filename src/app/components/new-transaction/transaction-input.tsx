@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./new-transaction.scss";
 
 interface TransactionInputProps {
   label: string;
@@ -51,9 +50,9 @@ const TransactionInput: React.FC<TransactionInputProps> = ({
   };
 
   return (
-    <div className={`transaction-input ${className}`}>
+    <div className={`flex flex-col items-center gap-4 w-full md:items-start ${className}`}>
       <label
-        className="transaction-input__label mt-8 pb-[16px]"
+        className="font-inter font-semibold text-sm text-tertiary-300 text-center md:text-left"
         htmlFor="transactionValue"
       >
         {label}
@@ -61,7 +60,7 @@ const TransactionInput: React.FC<TransactionInputProps> = ({
       <input
         id="transactionValue"
         type="text"
-        className="transaction-input__input-field text-[16px]"
+        className="max-w-[9rem] flex justify-between items-center text-left text-sm p-3 abg-neutrl-100 border border-primary-500 rounded-lg focus:outline focus:outline-offset focus:outline-2 focus:outline-primary-500 md:max-w-[15.625rem] md:w-full"
         value={value}
         onChange={handleInputChange}
         onBlur={handleBlur}

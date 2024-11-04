@@ -34,10 +34,10 @@ export default function MobileNavbar() {
       </a>
 
       {isOpen && (
-        <div className="fixed top-0 left-0 w-[210px] h-auto bg-soft-green shadow-lg z-50 flex flex-col items-center pl-5 pr-5 pb-7 pt-10">
+        <div className="fixed top-0 left-0 w-[210px] h-auto bg-tertiary-400 shadow-lg z-50 flex flex-col items-center pl-5 pr-5 pb-7 pt-10">
           <button
             onClick={toggleMenu}
-            className="absolute top-2 right-2 text-tertiary-color hover:text-gray-800 text-2xl"
+            className="absolute top-2 right-2 text-tertiary-500 hover:text-gray-800 text-2xl"
           >
             ✕
           </button>
@@ -48,7 +48,7 @@ export default function MobileNavbar() {
                 href={`#${item.link}`}
                 className={`block py-4 text-md text-black hover:bg-gray-200 text-center w-full ${
                   activeLink === item.link
-                    ? "text-tertiary-color font-bold border-b-2 border-tertiary-color"
+                    ? "text-tertiary-500 font-bold border-b-2 border-tertiary-500"
                     : "text-black font-normal"
                 } ${
                   index !== navItems.length - 1

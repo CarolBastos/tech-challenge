@@ -20,7 +20,7 @@ const WelcomeCard: React.FC<WelcomeCard> = ({
       {cardImage && (
         <Image src={cardImage} alt={cardAltImage} width={73} height={56} />
       )}
-      <h3 className="text-black text-center font-semibold text-tertiary-color text-lg">
+      <h3 className="text-black text-center font-semibold text-tertiary-500 text-lg">
         {cardTitle}
       </h3>
       <p className="text-center text-sm">{cardText}</p>

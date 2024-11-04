@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Image from "next/image";
-import "./new-transaction.scss";
 
 import { SelectOption, TransactionInput } from "./index";
 import Button from "../../components/button/button";
@@ -129,24 +128,23 @@ export default function NewTransaction({ updateBalance, updateStatement, balance
   };
 
   return (
-    <div className="new-transaction rounded-lg p-8 mt-[24px] bg-new-transaction">
-      <h2 className="new-transaction__title text-[25px] font-bold mb-[32px]">
+    <div className="relative w-full flex flex-col items-center gap-6 font-inter bg-neutral-300 p-8 max-[767px]:p-4 rounded-lg h-[39.5625rem] md:h-[29.875rem] md:items-start">
+      <h2 className="text-xl text-center text-tertiary-300 font-semibold z-20">
         Nova transação
       </h2>
 
-      <div className="new-transaction__select relative w-[355px]">
+      <div className="relative w-full">
         <button
           type="button"
-          className="w-full text-gray-700 py-2 px-3 text-left flex items-center justify-between"
+          className="relative w-full flex justify-between items-center text-left text-sm p-3 bg-neutral-100 border border-primary-500 rounded-lg z-40 md:max-w-[20.9375rem]"
           onClick={handleToggle}
           aria-haspopup="listbox"
           aria-expanded={isOpen}
         >
           {selectedValue || "Selecione o tipo de transação"}
           <Image
-            className={`ml-2 transition-transform duration-300 ${
-              isOpen ? "rotate-180" : "rotate-0"
-            }`}
+            className={`ml-2 transition-transform duration-300 ${isOpen ? "rotate-180" : "rotate-0"
+              }`}
             priority
             src="/images/icone-seta.svg"
             height={14}
@@ -155,7 +153,7 @@ export default function NewTransaction({ updateBalance, updateStatement, balance
           />
         </button>
         {isOpen && (
-          <ul className="new-transaction__select absolute w-full mt-1">
+          <ul className="absolute w-full bg-neutral-100 -mt-4 rounded-lg border border-primary-500 z-30 md:max-w-[20.9375rem]">
             <SelectOption value="Câmbio de Moeda" onClick={handleSelect}>
               Câmbio de Moeda
             </SelectOption>
@@ -175,7 +173,7 @@ export default function NewTransaction({ updateBalance, updateStatement, balance
       {hasError && <p className="text-red-500 mt-2">Selecione um tipo de transação.</p>}
 
       <TransactionInput
-        className="new-transaction__transaction-input"
+        className="z-20"
         label="Valor da Transação"
         value={transactionValue}
         onChange={handleChange}
@@ -187,8 +185,31 @@ export default function NewTransaction({ updateBalance, updateStatement, balance
       )}
 
       <div className="mt-8">
-        <Button className="new-transaction__transaction-button" text="Concluir transação" onClick={handleClick} />
+        <Button className="max-w-[9rem] md:max-w-[15.625rem] md:w-full relative z-20" text="Concluir transação" onClick={handleClick} />
       </div>
+
+      <Image
+        src="/images/newtransaction-illustration.svg"
+        alt=""
+        width={32}
+        height={32}
+        className='absolute bottom-6 w-[16.5rem] md:w-[17.6875rem] z-0 max-[767px]:left-6 min-[768px]:right-6 lg:hidden'
+      />
+      <Image
+        src="/images/newtransaction-bg-squares-1.svg"
+        alt="Quadrado superior"
+        width={32}
+        height={32}
+        className='w-[9.125rem] absolute top-0 z-0 max-[767px]:left-0 min-[768px]:right-0'
+      />
+      <Image
+        src="/images/newtransaction-bg-squares-1.svg"
+        alt="Quadrado inferior"
+        width={32}
+        height={32}
+        className='w-[9.125rem] absolute bottom-0 right-0 z-0 md:left-0'
+      />
+      
     </div>
   );
 }

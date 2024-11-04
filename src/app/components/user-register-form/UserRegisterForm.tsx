@@ -158,6 +158,7 @@ export const UserRegisterForm = ({
                   checked={terms}
                   onChange={(e) => setTerms(e.target.checked)}
                   required
+                  className="h-[1.5rem] w-[1.5rem]"
                 />
                 <label>
                   Li e estou ciente quanto às condições de tratamento dos meus
@@ -167,7 +168,7 @@ export const UserRegisterForm = ({
             </div>
             <div className="flex items-center justify-center">
               <button
-                className="w-36 h-12 bg-red-500 rounded-lg text-white font-bold"
+                className="w-36 h-12 bg-secondary-500 rounded-lg text-white font-bold"
                 type="submit"
               >
                 Criar conta
