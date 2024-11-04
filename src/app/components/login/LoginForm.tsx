@@ -53,10 +53,10 @@ export const LoginForm = ({ viewLoginForm, onClose }: ILoginForm) => {
   return (
     <>
       {viewLoginForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 px-6">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 px-6 h-full">
           <form
             onSubmit={handleSubmit}
-            className="w-full max-w-[792px] bg-stone-50 h-[100vh] flex flex-col gap-8 py-8 md:px-28 px-8 relative"
+            className="w-full max-w-[792px] bg-stone-50 h-full flex flex-col gap-8 py-8 md:px-28 px-8 relative overflow-y-auto"
           >
             <button
               className="absolute right-4 top-4"
