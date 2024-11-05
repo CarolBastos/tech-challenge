@@ -34,3 +34,10 @@ Neste projeto, foi desenvolvido o frontend para uma aplicação de gerenciamento
 - Christian Martins
 - Igor França
 - Tayná Martins Ramos
+
+## Obs: Nesse projeto os dados estão mockados, para acessar o dashboard, vá até a pagina de login e digite os seguintes dados:
+```
+   usuario: user1@email.com
+   senha: password1
+```
+
